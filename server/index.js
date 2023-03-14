@@ -10,6 +10,7 @@ dotenv.config();
 // Import the authentication and user routes
 const authRoute = require("./routes/auth");
 const userRoute = require("./routes/users");
+const port = process.env.PORT
 // Parse requests with JSON payloads
 app.use(express.json());
 
@@ -25,6 +26,6 @@ app.use("/api/users", userRoute);
 
 
 // Start the server on port 8800 and log a message when it starts running
-app.listen(8800, () => {
-  console.log("Backend server is running on port 8800.");
+app.listen(port, () => {
+  console.log(`Server listening at http://localhost:${port}`)
 });
