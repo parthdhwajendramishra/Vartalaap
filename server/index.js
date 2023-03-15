@@ -1,9 +1,10 @@
 // Import the required packages and modules.
 const express = require("express"); // Express web framework for Node.js
 const app = express(); // Create an instance of the Express application
-const mongoose = require("mongoose"); // Mongoose object modeling for MongoDB
+
 const dotenv = require("dotenv"); // Loads environment variables from a .env file
 
+const connectDB=require('./config/connectDB');
 // Load environment variables from .env file
 dotenv.config();
 
@@ -15,10 +16,7 @@ const port = process.env.PORT
 app.use(express.json());
 
 // Connect to MongoDB using the MONGO_URL environment variable
-mongoose
-  .connect(process.env.MONGO_URL)
-  .then(() => console.log("Database Connected")) // Log a message if the connection is successful
-  .catch((err) => console.log(err)); // Log an error message if the connection fails
+connectDB(process.env.MONGO_URL)
 
 // Register the authentication and user routes with the Express application
 app.use("/api/auth", authRoute);
