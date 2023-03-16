@@ -1,6 +1,8 @@
+import Navbar from '../components/Navbar';
 const Layout = () => {
+
     return <>
-      <p>Layout</p>
+        <Navbar/>
     </>;
   };
   

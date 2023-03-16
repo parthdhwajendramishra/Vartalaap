@@ -3,10 +3,12 @@ const express = require("express"); // Express web framework for Node.js
 const app = express(); // Create an instance of the Express application
 
 const dotenv = require("dotenv"); // Loads environment variables from a .env file
+const cors = require('cors');
 
 const connectDB=require('./config/connectDB');
 // Load environment variables from .env file
 dotenv.config();
+app.use(cors());
 
 // Import the authentication and user routes
 const authRoute = require("./routes/auth");
