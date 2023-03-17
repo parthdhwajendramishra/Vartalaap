@@ -35,6 +35,7 @@ const Login = () => {
      
       if (res.data.status === "success") {
        
+        console.log(res.data.status);
         storeToken(res.data.accessToken)
         navigate('/dashboard')
       }
