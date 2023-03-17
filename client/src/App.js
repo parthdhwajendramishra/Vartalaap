@@ -1,4 +1,4 @@
-import Layout from './components/Layout';
+// import Layout from './components/Layout';
 import Home from './pages/Home';
 import Contact from './components/Contact';
 import About from './components/About';

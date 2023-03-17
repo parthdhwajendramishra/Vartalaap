@@ -15,10 +15,14 @@ Finally, the module exports a Mongoose model for the schema, using the name "Use
 const mongoose = require("mongoose");
 const UserSchema = new mongoose.Schema(
     {
-    username: {
+    fname: {
         type: String,
         required: true,
-        unique: true
+    },
+
+    lname: {
+        type: String,
+        required: true,
     },
 
     email: {

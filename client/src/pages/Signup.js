@@ -4,7 +4,6 @@ import Form from 'react-bootstrap/Form';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRegisterUserMutation } from '../services/userAuthApi';
-import { storeToken } from '../services/LocalStorageService';
 
 const Signup = () => {
     const [error, setError] = useState({
@@ -21,21 +20,24 @@ const Signup = () => {
         e.preventDefault();
         const data = new FormData(e.currentTarget);
         const actualData = {
-            name: data.get('name'),
+            fname: data.get('fname'),
+            lname: data.get('lname'),
             email: data.get('email'),
             password: data.get('password'),
-            password_confirmation: data.get('password_confirmation'),
-            tc: data.get('tc'),
+            password_confirmation:data.get('confirm_password')
         }
-        if (actualData.name && actualData.email && actualData.password && actualData.password_confirmation && actualData.tc !== null) {
-            if (actualData.password === actualData.password_confirmation) {
+        if (actualData.fname &&  actualData.lname && actualData.email && actualData.password && actualData.password_confirmation && actualData.tc !== null) {
+          
+            if (actualData.password === actualData.password_confirmation) 
+            {
+                console.log(actualData);
+
                 const res = await registerUser(actualData);
 
-                console.log(res)
+                console.log(res.response)
 
                 if (res.data.status === "success") {
-                    storeToken(res.data.token)
-                    navigate('/dashboard')
+                    navigate('/')
                 }
 
                 if (res.data.status === "failed") {
@@ -52,6 +54,16 @@ const Signup = () => {
     return <>
         <Form className='m-auto' onSubmit={handleSubmit}>
 
+            <Form.Group className="mb-3 mx-5" controlId="formBasicName">
+                <Form.Label>First Name</Form.Label>
+                <Form.Control type="name" placeholder="Name" name="fname" style={{ width: '50%' }} />
+            </Form.Group>
+
+            <Form.Group className="mb-3 mx-5" controlId="formBasicName">
+                <Form.Label>Last Name</Form.Label>
+                <Form.Control type="name" placeholder="Name" name="lname" style={{ width: '50%' }} />
+            </Form.Group>
+
             <Form.Group className="mb-3 mx-5" controlId="formBasicEmail" >
                 <Form.Label>Email address</Form.Label>
                 <Form.Control type="email" placeholder="Enter email" name="email" style={{ width: '50%' }} />
@@ -65,6 +77,14 @@ const Signup = () => {
                 <Form.Label>Password</Form.Label>
                 <Form.Control type="password" placeholder="Password" name="password" style={{ width: '50%' }} />
             </Form.Group>
+
+            <Form.Group className="mb-3 mx-5" controlId="formBasicPassword1">
+                <Form.Label>Confirm Password</Form.Label>
+                <Form.Control type="password" placeholder="Confirm Password" name="confirm_password" style={{ width: '50%' }} />
+            </Form.Group>
+
+
+
 
             <Button variant="primary" type="submit" className="mx-5">
                 Submit

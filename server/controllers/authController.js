@@ -38,9 +38,13 @@ const loginController = async (req, res) => {
 
 
 const registerController = async (req, res) => {
+
+    console.log("Registering",req.body.fname);
     // Create a new user object using the User model
+
     const newUser = new User({
-        username: req.body.username,
+        fname: req.body.fname,
+        lname: req.body.lname,
         email: req.body.email,
         // Encrypt the password using AES encryption from CryptoJS
         password: CryptoJs.AES.encrypt(
@@ -53,7 +57,7 @@ const registerController = async (req, res) => {
         // Save the new user to the database
         const user = await newUser.save();
         // Return a HTTP status of 201 and the newly created user object
-        res.status(201).json(user);
+        res.send({ "status": "success", "message": "Registration Success", "user": user });
     } catch (err) {
         // Return a HTTP status of 500 and the error object if there's an error
         res.status(500).json(err);
