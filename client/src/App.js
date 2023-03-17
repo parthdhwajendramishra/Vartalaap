@@ -1,9 +1,9 @@
 import Layout from './components/Layout';
-import Home from './components/Home';
+import Home from './pages/Home';
 import Contact from './components/Contact';
 import About from './components/About';
-import Dashboard from './components/Dashboard';
-import Login from './components/Login';
+import Dashboard from './pages/Dashboard';
+import Login from './pages/Login';
 
 
 
@@ -16,7 +16,7 @@ function App() {
   const { token } = useSelector(state => state.auth)
   return (
     <BrowserRouter>
-      <Layout/>
+      {/* <Layout/> */}
       <Routes>
         <Route exact path='/' element={< Home />}></Route>
         <Route  path="login" element={!token ? <Login /> : <Navigate to="/dashboard" />} />

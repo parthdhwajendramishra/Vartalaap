@@ -31,6 +31,7 @@ export const userAuthApi = createApi({
         }
       }
     }),
+    
     resetPassword: builder.mutation({
       query: ({ actualData, id, token }) => {
         return {

@@ -32,9 +32,7 @@ const Login = () => {
 
     if (actualData.email && actualData.password) {
       const res = await loginUser(actualData);
-
-      console.log(res);
-      // console.log(res);
+     
       if (res.data.status === "success") {
        
         storeToken(res.data.accessToken)
@@ -57,11 +55,11 @@ const Login = () => {
 
 
   return (
-    <Form className='m-3' onSubmit={handleSubmit}>
+    <Form className='m-auto' onSubmit={handleSubmit}>
 
       <Form.Group className="mb-3 mx-5" controlId="formBasicEmail" >
         <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" name="email" />
+        <Form.Control type="email" placeholder="Enter email" name="email" style={{ width: '50%' }} />
 
         <Form.Text className="text-muted">
           We'll never share your email with anyone else.
@@ -70,7 +68,7 @@ const Login = () => {
 
       <Form.Group className="mb-3 mx-5" controlId="formBasicPassword">
         <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" name="password"/>
+        <Form.Control type="password" placeholder="Password" name="password" style={{ width: '50%' }}/>
       </Form.Group>
 
       <Button variant="primary" type="submit" className="mx-5">

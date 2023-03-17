@@ -7,6 +7,8 @@ import { useDispatch } from 'react-redux';
 import {  unsetUserInfo } from '../store/userSlice';
 import { unsetUserToken } from '../store/authSlice';
 import {  removeToken } from '../services/localStorageService';
+
+
 const NavBar = () => {
   const { token } = useSelector(state => state.auth)
   const navigate = useNavigate();
@@ -20,8 +22,9 @@ const NavBar = () => {
   }
   return (
     <Navbar bg="light" expand="lg">
-      <Navbar.Brand href="/">React-Bootstrap</Navbar.Brand>
+      <Navbar.Brand href="/">Vartalaap</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
           <NavLink className="nav-link" exact to="/">
